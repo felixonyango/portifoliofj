@@ -2,18 +2,207 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Felix Juma - Software Developer Portfolio. Building reliable software solutions using Python, Java, and JavaScript." />
-    <meta name="keywords" content="Felix Juma, Software Developer, Python, Java, JavaScript, Portfolio" />
-    <meta name="author" content="Felix Juma" />
     <title>Felix Juma | Software Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #0f172a; }
+      nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #e2e8f0; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+      .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+      .logo { font-size: 1.75rem; font-weight: 700; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+      .nav-links { display: flex; gap: 2rem; }
+      .nav-links a { text-decoration: none; color: #0f172a; font-weight: 500; }
+      .nav-links a:hover { color: #3b82f6; }
+      section { padding: 5rem 0; }
+      .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #f5f3ff 100%); }
+      .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+      .greeting { display: flex; align-items: center; gap: 1rem; color: #3b82f6; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+      h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; background: linear-gradient(135deg, #0f172a, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .subtitle { font-size: 1.75rem; color: #3b82f6; font-weight: 600; margin-bottom: 1.5rem; }
+      .description { font-size: 1.25rem; color: #475569; margin-bottom: 2rem; }
+      .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; border: none; cursor: pointer; }
+      .profile-img { width: 350px; height: 350px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #8b5cf6); display: flex; align-items: center; justify-content: center; font-size: 6rem; font-weight: 700; color: white; margin: 0 auto; }
+      .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem; position: relative; }
+      .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius: 2px; }
+      .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+      .skill-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+      .skill-card h3 { color: #3b82f6; margin-bottom: 1rem; }
+      .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+      .project-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-top: 4px solid #3b82f6; }
+      .project-card h3 { margin-bottom: 0.5rem; }
+      .tag { display: inline-block; padding: 0.25rem 0.75rem; background: #f1f5f9; color: #3b82f6; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-top: 1rem; }
+      .contact-form { max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 2.5rem; border-radius: 12px; }
+      .form-group { margin-bottom: 1.5rem; }
+      .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+      .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; }
+      footer { background: #0f172a; color: white; padding: 3rem 0 1.5rem; text-align: center; }
+      footer a { color: #3b82f6; text-decoration: none; }
+      .bg-light { background: #f8fafc; }
+      @media (max-width: 768px) {
+        .hero-content { grid-template-columns: 1fr; text-align: center; }
+        h1 { font-size: 2.5rem; }
+        .profile-img { width: 250px; height: 250px; font-size: 4rem; }
+        .nav-links { display: none; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <nav>
+      <div class="container">
+        <div class="nav-content">
+          <a href="#home" class="logo">FJ</a>
+          <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div>
+            <div class="greeting"><span style="width:40px;height:2px;background:linear-gradient(90deg,#3b82f6,#8b5cf6)"></span>Hello, I'm</div>
+            <h1>Felix Juma</h1>
+            <div class="subtitle">Software Developer</div>
+            <p class="description">Building reliable software solutions using Python, Java, and JavaScript.</p>
+            <p style="color:#64748b;margin-bottom:2rem;font-style:italic;border-left:3px solid #3b82f6;padding-left:1rem;">"I am a passionate software developer focused on building efficient and user-friendly applications."</p>
+            <a href="#contact" class="btn">Contact Me →</a>
+          </div>
+          <div class="profile-img">FJ</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p style="text-align:center;max-width:800px;margin:0 auto 3rem;color:#475569;font-size:1.1rem;">Felix Juma is a dedicated software developer with strong experience in backend and frontend development. He specializes in building efficient applications and solving complex technical problems.</p>
+        <div class="skills-grid">
+          <div class="skill-card"><h3>📝 Clean Code</h3><p>Writing maintainable and efficient code</p></div>
+          <div class="skill-card"><h3>🛡️ Reliable Systems</h3><p>Building robust and stable applications</p></div>
+          <div class="skill-card"><h3>👥 User-Friendly</h3><p>Creating intuitive user experiences</p></div>
+          <div class="skill-card"><h3>⚡ Performance</h3><p>Optimizing for speed and efficiency</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="bg-light">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>💻 Programming Languages</h3>
+            <p>• Python (Advanced)<br>• Java (Advanced)<br>• JavaScript (Advanced)<br>• HTML/CSS (Proficient)</p>
+          </div>
+          <div class="skill-card">
+            <h3>⚙️ Backend Skills</h3>
+            <p>• API Development (Expert)<br>• Database Design (Advanced)<br>• REST APIs (Advanced)<br>• Authentication (Advanced)</p>
+          </div>
+          <div class="skill-card">
+            <h3>🎨 Frontend Skills</h3>
+            <p>• Responsive Design (Advanced)<br>• Modern UI (Advanced)<br>• Interactive Web (Advanced)<br>• Form Handling (Proficient)</p>
+          </div>
+          <div class="skill-card">
+            <h3>🛠️ Tools</h3>
+            <p>• Git/GitHub (Advanced)<br>• VS Code (Expert)<br>• Linux (Proficient)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div style="max-width:800px;margin:0 auto;">
+          <div style="background:#f8fafc;padding:2rem;border-radius:12px;margin-bottom:1.5rem;border-left:4px solid #3b82f6;">
+            <div style="color:#3b82f6;font-weight:600;margin-bottom:0.5rem;">2022 – Present</div>
+            <h3 style="font-size:1.5rem;margin-bottom:0.25rem;">Software Developer</h3>
+            <p style="color:#64748b;margin-bottom:1rem;">Freelance Developer</p>
+            <p style="color:#475569;">• Developed web applications using Python and JavaScript<br>• Built backend systems for data processing<br>• Created user-friendly interfaces<br>• Designed and managed databases</p>
+          </div>
+          <div style="background:#f8fafc;padding:2rem;border-radius:12px;border-left:4px solid #8b5cf6;">
+            <div style="color:#8b5cf6;font-weight:600;margin-bottom:0.5rem;">2021 – 2022</div>
+            <h3 style="font-size:1.5rem;margin-bottom:0.25rem;">Backend Developer</h3>
+            <p style="color:#64748b;margin-bottom:1rem;">Independent Projects</p>
+            <p style="color:#475569;">• Built REST APIs using Python<br>• Designed databases<br>• Implemented authentication systems</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="bg-light">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>📋 Task Management System</h3>
+            <p style="color:#475569;margin-bottom:1rem;">A web-based task manager for organizing and tracking tasks.</p>
+            <p>✓ User login ✓ Task tracking ✓ Dashboard</p>
+            <span class="tag">Python</span> <span class="tag">JavaScript</span>
+          </div>
+          <div class="project-card">
+            <h3>🎓 Student Management System</h3>
+            <p style="color:#475569;margin-bottom:1rem;">A system for managing student records and information.</p>
+            <p>✓ Add students ✓ Search ✓ Update records</p>
+            <span class="tag">Java</span> <span class="tag">SQL</span>
+          </div>
+          <div class="project-card">
+            <h3>📊 Data Analytics Tool</h3>
+            <p style="color:#475569;margin-bottom:1rem;">A tool for analyzing data and generating reports.</p>
+            <p>✓ Data processing ✓ Charts ✓ Reports</p>
+            <span class="tag">Python</span>
+          </div>
+          <div class="project-card">
+            <h3>💰 Personal Budget Tracker</h3>
+            <p style="color:#475569;margin-bottom:1rem;">A web app for tracking income and expenses.</p>
+            <p>✓ Expense tracking ✓ Monthly reports</p>
+            <span class="tag">JavaScript</span> <span class="tag">Python</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Me</h2>
+        <form class="contact-form" action="https://formsubmit.co/felixjuma1995@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New contact from portfolio">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://your-vercel-url.vercel.app/thanks.html">
+
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required placeholder="your.email@example.com">
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea name="message" rows="5" required placeholder="Your message..."></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%;">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <h3 style="font-size:1.75rem;margin-bottom:0.5rem;">Felix Juma</h3>
+        <p style="color:#64748b;margin-bottom:1rem;">Software Developer</p>
+        <a href="mailto:felixjuma1995@gmail.com">felixjuma1995@gmail.com</a>
+        <p style="margin-top:2rem;color:#64748b;font-size:0.9rem;">© 2026 Felix Juma. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
